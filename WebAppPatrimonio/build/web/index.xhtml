@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sistema de Controle Patrimonial</title>
+        <link type="text/css" href="styles.css" rel="stylesheet"/>
+        <style type="text/css">  
+            .ui-widget {  
+                font-size: 12px !important;  
+            }  
+            .ui-growl{  
+                left:40%;  
+                top:50%;
+            }    
+        </style>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3><font face="Arial"> Sistema de Controle Patrimonial </font> </h3>
+            <p:menubar autoDisplay="false">
+                <p:submenu label="Cadastro" icon="ui-icon-note">
+                    <p:menuitem value="Instituição" url="instituicao.jsf"/>
+                    <p:menuitem value="Local" url="local.jsf"/>
+                    <p:menuitem value="Material" url="#"/>
+                </p:submenu>
+                <p:submenu label="Movimentação" icon=" ui-icon-clipboard">
+                    <p:menuitem value="Movimentação de Bens" url="#"/>
+                </p:submenu>
+                <p:submenu label="Configurações" icon="ui-icon-wrench"  style="white-space:nowrap;padding:0px" >   
+                    <p:menuitem value="Módulos do Sistema" url="#" />  
+                    <p:menuitem value="Perfil" url="#" />  
+                    <p:menuitem value="Permissões de Acesso" url="#" />  
+                    <p:separator />  
+                    <p:menuitem value="Usuários" url="#" />  
+                </p:submenu>
+                <p:submenu label="Relatórios" icon="ui-icon-print">
+                    <p:menuitem value="Movimentação de Bens" url="#"/>
+                </p:submenu>
+                <p:menuitem value="Sair" url="#" icon="ui-icon-closethick"/>
+            </p:menubar>
+
+        </h:form>
+    </h:body>
+</html>
+

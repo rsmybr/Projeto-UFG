@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Instituição</title>
+        <style type="text/css">  
+            .ui-widget {  
+                font-size: 12px !important;  
+            }  
+            .ui-growl{  
+                left:40%;  
+                top:50%;
+            }    
+        </style>        
+    </h:head>
+    <h:body>
+        <p:panel header="Pesquisa">
+            <h:form>
+                <p:focus for="PesqNome"/>
+                <p:outputLabel value="Nome da Instituição: "/> 
+                <p:inputText value="#{instituicaoControle.pesquisa}" size="50" id="PesqNome"/>
+                <p:spacer width="10"/>
+                <p:commandButton value="Procurar" action="#{instituicaoControle.pesquisaInstituicao()}" ajax="false" icon="ui-icon-search" />
+            </h:form>
+        </p:panel>
+        <h:form>
+            <p:dataTable var="tb_instituicao" paginator="true" rows="5" value="#{instituicaoControle.instituicoes}" emptyMessage="">
+                <p:column headerText="Código" width="10">
+                    <h:outputText value="#{tb_instituicao.codigo}"/>
+                </p:column>
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{tb_instituicao.descricao}"/>
+                </p:column>
+                <p:column headerText="Opções" width="180">
+                    <p:commandButton value="Excluir" oncomplete="confirmation.show()" icon="ui-icon-trash"
+                                     ajax="true" title="Excluir a Instituição">
+                        <f:setPropertyActionListener value="#{tb_instituicao}"
+                                                     target="#{instituicaoControle.instituicao}"/>
+                    </p:commandButton>
+
+                    <p:confirmDialog message="Confirma exclusão?" 
+                                     closable="false" header="Atenção" severity="alert" widgetVar="confirmation">
+                        <p:commandButton id="btnSim" value="Sim"
+                                         oncomplete="confirmation.hide()" process="@this"
+                                         action="#{instituicaoControle.deleteInstituicao()}" ajax="false"/>
+                        <p:commandButton id="btnNao" value="Não"
+                                         onclick="confirmation.hide()" type="button"/>
+                    </p:confirmDialog>
+                    
+                    <p:commandButton value="Alterar" action="#{instituicaoControle.editInstituicao()}" ajax="false" icon="ui-icon-document">
+                        <f:setPropertyActionListener target="#{instituicaoControle.instituicao}" value="#{tb_instituicao}"/>                        
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <hr/>
+            <p:commandButton value="Menu Principal" action="#{instituicaoControle.goMenu()}" icon="ui-icon-home"/>
+            <p:commandButton value="Inclusão" action="#{instituicaoControle.inclusaoInstituicao()}" icon="ui-icon-document"/>
+        </h:form>
+
+        
+    </h:body>
+</html>
+

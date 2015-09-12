@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Local</title>
+        <style type="text/css">  
+            .ui-widget {  
+                font-size: 12px !important;  
+            }  
+            .ui-growl{  
+                left:40%;  
+                top:50%;
+            }    
+        </style>        
+    </h:head>
+    <h:body>
+        <h:form id="formulario">
+            <p:growl id="growl" showDetail="false" sticky="false" life="3000" />
+            <p:focus for="descricao"/>
+            <p:panel header="#{localControle.titulo}">
+                <h:panelGrid columns="2" border="0">
+                    <h:outputLabel value="Cód.Local:" />
+                    <h:inputText value="#{localControle.local.codlocal}" readonly="true" size="10"/>
+                    <h:outputLabel value="Descrição:"/>
+                    <h:inputText value="#{localControle.local.descricao}" size="80" id="descricao"
+                                 required="true" label="Descrição" requiredMessage="Informe a Descrição!"/>
+                    <h:outputLabel value="Cód.Instituição:"/>
+                    <h:selectOneMenu value="#{localControle.local.codinstituicao}" >
+                        <f:selectItems value="#{localControle.listaInstituicoes}" />
+                    </h:selectOneMenu>
+                </h:panelGrid>
+            </p:panel>
+            <br/>
+            <p:commandButton value="Gravar" action="#{localControle.addLocal()}" icon=" ui-icon-disk" ajax="false"
+                             rendered="#{localControle.isModoInclusao()}"/>
+            <p:commandButton value="Gravar" action="#{localControle.updateLocal()}" icon=" ui-icon-disk" ajax="false"
+                             rendered="#{localControle.isModoAlteracao()}"/>
+            <p:commandButton value="Cancelar" action="local.jsf" icon="ui-icon-closethick" immediate="true"/>
+            <p:commandButton value="Menu Principal" action="#{localControle.goMenu()}" icon="ui-icon-home" immediate="true"/>
+        </h:form>
+    </h:body>
+</html>
+
+
+
